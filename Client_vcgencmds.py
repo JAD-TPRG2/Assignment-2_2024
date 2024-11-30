@@ -17,27 +17,35 @@ host = '10.102.13.211'
 port = 5000
 s.connect((host, port))
 
+try:
 # JSON object call to server
-jsonReceived = s.recv(1024).decode()
+    jsonReceived = s.recv(1024).decode()
 # Prints the json received
-print('Json received (byte type)-->', jsonReceived, '\n')
-if jsonReceived == b'':
-    print('Ooops')
-    exit()
+    print('Json received (byte type)-->', jsonReceived, '\n')
+    if jsonReceived == b'':
+        print('Ooops')
+        exit()
 
 # Converts json to dictionary
-data = json.loads(jsonReceived)
-ret = json.dumps(data, indent=4)
-ret1 = data['Temperature']
-ret2 = data['Voltage']
-ret3 = data['PWM']
-ret4 = data['Memory']
-ret5 = data['Clock']
+    data = json.loads(jsonReceived)
+    ret = json.dumps(data, indent=4)
+    ret1 = data['Temperature']
+    ret2 = data['Voltage']
+    ret3 = data['PWM']
+    ret4 = data['Memory']
+    ret5 = data['Clock']
 # Prints the values
-print(ret1)
-print(ret2)
-print(ret3)
-print(ret4)
-print(ret5)
+    print(ret1)
+    print(ret2)
+    print(ret3)
+    print(ret4)
+    print(ret5)
 # Closes the socket
-s.close()
+    s.close()
+
+except socket.gaierror: # = short form for getaddrinfo()
+    print('There was an error resolving the host')
+    s.close()
+finally:
+    print('Sorry lost connection')
+    exit()

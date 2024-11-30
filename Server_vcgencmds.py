@@ -45,9 +45,18 @@ f_dict = json.dumps(ini_string) # The eval() function evaluates JavaScript code 
 
 
 # This is the server
-while True:
-    c, addr = s.accept()
-    print ('Got connection from',addr)
-    res = bytes(str(f_dict), 'utf-8') # needs to be a byte
-    c.send(res)
-    c.close()
+def main():
+    """This is the server"""
+    while True:
+        c, addr = s.accept()
+        print ('Got connection from',addr)
+        res = bytes(str(f_dict), 'utf-8') # needs to be a byte
+        c.send(res)
+        c.close()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Bye...')
+        exit()
