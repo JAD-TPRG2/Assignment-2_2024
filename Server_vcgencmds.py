@@ -1,16 +1,17 @@
 '''VCGECMDS Server'''
 # Jeremy Domino (100919249)
-# Server_vcgencmds.py -- Area and Volume Calculator.
+# Server_vcgencmds.py -- This server runs on Pi, sends Pi's your 4 arguments from the vcgencmds, sent as Json object
 # TPRG2131 Section 02
 # November 21, 2024
 # This program is strictly my own work. Any material beyond course learning
 # materials that is taken from the Web or other sources is properly cited,
 # giving credit to the original author(s).
+# Modified from code provided by Prof. Phil Jarvis
 #
 # This server runs on Pi, sends Pi's your 4 arguments from the vcgencmds, sent as Json object.
 
 import socket
-import os, time
+import os
 import json
 
 # Creates the socket
@@ -40,7 +41,7 @@ ini_string = {
     "PWM": pwm,
     "Memory": get_mem,
     "Clock": get_arm}
-# converting string to json
+# converting string to JSON object
 f_dict = json.dumps(ini_string) # The eval() function evaluates JavaScript code represented as a string and returns its completion value.
 
 
